@@ -41,10 +41,6 @@ class EntityManager {
         };
     }
 
-    async checkSchema() {
-        
-    }
-
     getIndexName() {
         return this._indexName;
     }
