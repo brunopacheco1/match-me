@@ -9,27 +9,6 @@ describe("MatchMeRestTest", () => {
         "minDistance" : 0
     };
 
-    it("#POST /match-me/search not expected result by location", (done) => {
-        searchRequest.location = "-21.9448222,0";
-
-        request.post("/match-me/search")
-            .send(searchRequest)
-            .expect("Content-Type", /json/)
-            .expect(/\[\]/)
-            .expect(200, done);
-    });
-    
-    it("#POST /match-me/search not expected result by text", (done) => {
-        searchRequest.lat = -21.9448222;
-        searchRequest.query = "Teste";
-        
-        request.post("/match-me/search")
-            .send(searchRequest)
-            .expect("Content-Type", /json/)
-            .expect(/\[\]/)
-            .expect(200, done);
-    });
-
     it("#POST /match-me/search null location", (done) => {
         request.post("/match-me/search")
             .send({
@@ -136,13 +115,5 @@ describe("MatchMeRestTest", () => {
             .expect("Content-Type", /json/)
             .expect(/start should be int/)
             .expect(400, done);
-    });
-
-    it("#POST /match-me/search empty result after deletion", (done) => {        
-        request.post("/match-me/search")
-            .send(searchRequest)
-            .expect("Content-Type", /json/)
-            .expect(/\[\]/)
-            .expect(200, done);
     });
 });
