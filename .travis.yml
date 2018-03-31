@@ -18,6 +18,7 @@ cache:
 before_install:
   - docker run -p 9200:9200 -p 9300:9300 --rm --name elasticsearch -d -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.2.3
 script:
+  - sleep 10
   - npm test
   - sonar-scanner
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
