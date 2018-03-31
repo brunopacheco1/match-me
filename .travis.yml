@@ -1,0 +1,34 @@
+language: node_js
+dist: trusty
+sudo: required
+node_js:
+  - "9"
+jdk:
+  - oraclejdk8
+services:
+  - docker
+addons:
+  sonarcloud:
+    organization: $SONAR_ORGANIZATION
+    token:
+      secure: $SONAR_TOKEN
+cache:
+  directories:
+    - $HOME/.sonar/cache
+before_install:
+  - docker run -p 9200:9200 -p 9300:9300 --rm --name elasticsearch -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+script:
+  - npm test
+  - sonar-scanner
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker build -t "$DOCKER_USERNAME/match-me" .;
+    else
+    docker build -t "$DOCKER_USERNAME/match-me:$TRAVIS_BRANCH" .;
+    fi
+after_success:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker push "$DOCKER_USERNAME/match-me:latest";
+    else
+    docker push "$DOCKER_USERNAME/match-me:$TRAVIS_BRANCH";
+    fi

@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+    container_name: elasticsearch
+    restart: always
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  match-me:
+    image: brunopacheco1/match-me
+    container_name: match-me
+    environment:
+      - NODE_ENV=prod
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+    restart: always
+    ports:
+      - 3000:3000
