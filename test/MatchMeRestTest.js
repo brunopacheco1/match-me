@@ -9,24 +9,6 @@ describe("MatchMeRestTest", () => {
         "minDistance" : 0
     };
 
-    it("#POST /match-me/search expected result by location", (done) => {
-        request.post("/match-me/search")
-            .send(searchRequest)
-            .expect("Content-Type", /json/)
-            .expect(/30b55671ea603f0541a37465bf5dc65fa4b3b973/)
-            .expect(200, done);
-    });
-
-    it("#POST /match-me/search expected result by text", (done) => {
-        searchRequest.query = "Oficina";
-
-        request.post("/match-me/search")
-            .send(searchRequest)
-            .expect("Content-Type", /json/)
-            .expect(/30b55671ea603f0541a37465bf5dc65fa4b3b973/)
-            .expect(200, done);
-    });
-
     it("#POST /match-me/search not expected result by location", (done) => {
         searchRequest.location = "-21.9448222,0";
 

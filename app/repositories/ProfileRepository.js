@@ -13,7 +13,7 @@ class ProfileRepository {
         const body = await client.search({
             index: this._indexName,
             type: this._type,
-            q: `_id:${id}`
+            q: `id:${id}`
         });
 
         let profile = null;

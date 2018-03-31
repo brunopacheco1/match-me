@@ -7,6 +7,7 @@ class EntityManager {
         this._host = app.profile.elastic.host;
         this._port = app.profile.elastic.port;
         this._url = `${this._host}:${this._port}`;
+        this._schema = app.model.Schema;
     }
 
     async getClient() {
@@ -20,6 +21,15 @@ class EntityManager {
                 requestTimeout: 1000
             });
 
+            const result = await client.indices.exists({index : this._indexName});
+
+            if(!result) {
+                await client.indices.create({
+                    index : this._indexName,
+                    body : this._schema
+                });
+            }
+
             return client;
         } catch(error) {
             console.log(error);
@@ -29,6 +39,10 @@ class EntityManager {
                 message : "Elastic Search connection failed."
             };
         };
+    }
+
+    async checkSchema() {
+        
     }
 
     getIndexName() {
