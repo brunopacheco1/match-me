@@ -9,8 +9,8 @@ describe("MatchMeRestTest", () => {
         "minDistance" : 0
     };
 
-    it("#POST /match-me/search null location", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search null location", (done) => {
+        request.post("/profile/search")
             .send({
                 "maxDistance" : 0,
                 "minDistance" : 0
@@ -20,8 +20,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search null maxDistance", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search null maxDistance", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "minDistance" : 0
@@ -31,8 +31,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search null minDistance", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search null minDistance", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "maxDistance" : 0
@@ -42,8 +42,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search invalid location", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search invalid location", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "asdasdasd",
                 "maxDistance" : "asdasdsa",
@@ -54,8 +54,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search invalid maxDistance", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search invalid maxDistance", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "maxDistance" : "asdasdsa",
@@ -66,8 +66,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search invalid minDistance", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search invalid minDistance", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "maxDistance" : 0,
@@ -78,8 +78,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search invalid query", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search invalid query", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "maxDistance" : 1,
@@ -91,8 +91,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search invalid limit", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search invalid limit", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "maxDistance" : 1,
@@ -104,8 +104,8 @@ describe("MatchMeRestTest", () => {
             .expect(400, done);
     });
 
-    it("#POST /match-me/search invalid start", (done) => {
-        request.post("/match-me/search")
+    it("#POST /profile/search invalid start", (done) => {
+        request.post("/profile/search")
             .send({
                 "location": "-21.9448222,-44.1939177",
                 "maxDistance" : 1,

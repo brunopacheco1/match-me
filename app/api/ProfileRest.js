@@ -35,29 +35,7 @@ module.exports = app => {
     const service = app.services.ProfileService(app);
     const searchModel = app.model.Search;
     
-    app.get("/match-me/:id", async (request, response) => {
-        try {
-            const profile = await service.get(request.params.id);
-
-            response.json(profile);
-
-        } catch(error) {
-            errorHandler(error, response);
-        }
-    });
-    
-    app.get("/match-me", async (request, response) => {
-        try {
-            const profiles = await service.list();
-
-            response.json(profiles);
-
-        } catch(error) {
-            errorHandler(error, response);
-        }
-    });
-    
-    app.post("/match-me/search", checkSchema(searchModel), 
+    app.post("/profile/search", checkSchema(searchModel), 
         (request, response) => validateRequest(request, response, async () => {
 
             try {
