@@ -3,6 +3,7 @@ const consign = require("consign");
 const bodyParser = require("body-parser");
 const validator = require("express-validator");
 const ENV = process.env.NODE_ENV || "dev";
+const ELASTIC_HOST = process.env.ELASTIC_HOST || "localhost";
 
 module.exports = () => {
 
@@ -11,6 +12,7 @@ module.exports = () => {
     const config = require(`./environments/${ENV}`);
     
     app.profile = config;
+    app.profile.elastic.host = ELASTIC_HOST;
     app.use(bodyParser.urlencoded({extended : true}));
     app.use(bodyParser.json());
     app.use(validator());

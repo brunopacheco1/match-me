@@ -1,7 +1,7 @@
 const app = require("../app/init")();
 const request = require("supertest")(app);
 
-describe("MatchMeRestTest", () => {
+describe("ProfileRestTest", () => {
 
     let searchRequest = {
         "location": "-21.9448222,-44.1939177",
@@ -115,5 +115,13 @@ describe("MatchMeRestTest", () => {
             .expect("Content-Type", /json/)
             .expect(/start should be int/)
             .expect(400, done);
+    });
+
+    it("#POST /profile/search success", (done) => {
+        request.post("/profile/search")
+            .send(searchRequest)
+            .expect("Content-Type", /json/)
+            .expect(/\[\]/)
+            .expect(200, done);
     });
 });
