@@ -17,6 +17,7 @@ services:
     container_name: match-me
     environment:
       - NODE_ENV=prod
+      - ELASTIC_HOST=elasticsearch:9200
     depends_on:
       - elasticsearch
     links:
@@ -29,6 +30,7 @@ services:
     image: brunopacheco1/match-me-find-users
     container_name: match-me-find-users
     environment:
+      - ELASTIC_HOST=elasticsearch:9200
       - spring.profiles.active=prod
     depends_on:
       - elasticsearch

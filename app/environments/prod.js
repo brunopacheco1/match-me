@@ -2,7 +2,6 @@ module.exports = {
     "profile" : "prod",
     "port" : 3000,
     "elastic" : {
-        "indexName" : "match-me",
-        "port" : 9200
+        "indexName" : "match-me"
     }
 };

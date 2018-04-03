@@ -5,15 +5,13 @@ class EntityManager {
 
         this._indexName = app.profile.elastic.indexName;
         this._host = app.profile.elastic.host;
-        this._port = app.profile.elastic.port;
-        this._url = `${this._host}:${this._port}`;
         this._schema = app.model.Schema;
     }
 
     async getClient() {
         try {
             const client = new ElasticSearch.Client({
-                host : this._url
+                host :  this._host
                 //log : "trace"
             });
 
@@ -38,7 +36,7 @@ class EntityManager {
                 status : 400,
                 message : "Elastic Search connection failed."
             };
-        };
+        }
     }
 
     getIndexName() {
