@@ -24,3 +24,18 @@ services:
     restart: always
     ports:
       - 3000:3000
+
+  match-me-find-users:
+    image: brunopacheco1/match-me-find-users
+    container_name: match-me-find-users
+    environment:
+      - spring.profiles.active=prod
+    depends_on:
+      - elasticsearch
+      - match-me
+    links:
+      - elasticsearch
+      - match-me
+    restart: always
+    ports:
+      - 3100:3100
